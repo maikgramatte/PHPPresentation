@@ -387,7 +387,7 @@ abstract class AbstractSlide extends AbstractDecoratorWriter
         for ($row = 0; $row < $countRows; $row++) {
             // p:graphicFrame/a:graphic/a:graphicData/a:tbl/a:tr
             $objWriter->startElement('a:tr');
-            $objWriter->writeAttribute('h', CommonDrawing::pixelsToEmu($shape->getRow($row)->getHeight()));
+            $objWriter->writeAttribute('h', 0);
             // Write cells
             $countCells = count($shape->getRow($row)->getCells());
             for ($cell = 0; $cell < $countCells; $cell++) {
@@ -451,10 +451,10 @@ abstract class AbstractSlide extends AbstractDecoratorWriter
                 }
 
                 // Margins
-                $objWriter->writeAttribute('marL', $firstParagraphAlignment->getMarginLeft());
-                $objWriter->writeAttribute('marR', $firstParagraphAlignment->getMarginRight());
-                $objWriter->writeAttribute('marT', $firstParagraphAlignment->getMarginTop());
-                $objWriter->writeAttribute('marB', $firstParagraphAlignment->getMarginBottom());
+                $objWriter->writeAttribute('marL', CommonDrawing::pixelsToEmu($firstParagraphAlignment->getMarginLeft()));
+                $objWriter->writeAttribute('marR', CommonDrawing::pixelsToEmu($firstParagraphAlignment->getMarginRight()));
+                $objWriter->writeAttribute('marT', CommonDrawing::pixelsToEmu($firstParagraphAlignment->getMarginTop()));
+                $objWriter->writeAttribute('marB', CommonDrawing::pixelsToEmu($firstParagraphAlignment->getMarginBottom()));
 
                 // Determine borders
                 $borderLeft = $currentCell->getBorders()->getLeft();
